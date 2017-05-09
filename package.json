@@ -1,0 +1,30 @@
+{
+  "name": "smart-gardener-backend",
+  "version": "1.0.0",
+  "description": "Smart Gardener api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benConner/smart-gardener-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benConner/smart-gardener-backend/issues"
+  },
+  "homepage": "https://github.com/benConner/smart-gardener-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bookshelf": "^0.10.3",
+    "cheerio": "^0.22.0",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "knex": "^0.13.0",
+    "node": "0.0.0",
+    "pg": "^6.1.5",
+    "request": "^2.81.0"
+  }
+}
