@@ -5,9 +5,21 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('gardens').insert([
-        {name:"the best garden"},
-        {name:"bill"},
-        {name: "spring17"}
+        {
+          name:"the best garden",
+          height: 3,
+          length: 4
+        },
+        {
+          name:"bill",
+          height: 7,
+          length: 4
+        },
+        {
+          name: "spring17",
+          height: 3,
+          length: 8
+        }
       ]);
     });
 };

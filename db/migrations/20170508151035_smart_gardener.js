@@ -22,6 +22,8 @@ exports.up = function(knex, Promise) {
   .createTable('gardens', function(table) {
     table.increments()
     table.string('name').notNullable().unique()
+    table.integer('height').notNullable()
+    table.integer('length').notNullable()
   })
   .createTable('plants_gardens', (table) => {
     table.increments()
