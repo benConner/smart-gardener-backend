@@ -2,17 +2,16 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 let veg = [
-  "artichokes",
-  "asparagus",
-  "green-beans"
+  // "artichokes",
+  // "asparagus",
+  // "green-beans",
   // "lima-bean",
   // "pole-beans",
-  // "bean-sprouts",
   // "beets",
   // "broccoli",
   // "brussels-sprouts",
   // "butternut-squash",
-  // "cabbage",
+  // "cabbage"
   // "cantaloupe",
   // "carrots",
   // "cauliflower",
@@ -20,10 +19,10 @@ let veg = [
   // "corn",
   // "cucumbers",
   // "eggplant",
-  // "garlic",
+  // "garlic"
   // "hops",
-  // "horseradish",
-  // "kale-plant",
+  // "horseradish"
+  // "kale",
   // "leeks",
   // "lettuce",
   // "okra",
@@ -32,7 +31,7 @@ let veg = [
   // "peanuts",
   // "peas",
   // "bell-peppers",
-  // "hot-peppers",
+  // "hot-peppers"
   // "potatoes",
   // "pumpkins",
   // "giant pumpkins",
@@ -42,7 +41,7 @@ let veg = [
   // "soybeans",
   // "spinach",
   // "summer-squash",
-  // "winter-squash",
+  // "winter-squash"
   // "strawberry-plants",
   // "sweet-corn",
   // "sweet-potatoes",
@@ -51,19 +50,27 @@ let veg = [
   // "turnips",
   // "watermelon",
   // "zucchini"
+  "blackberries",
+  "blueberries",
+  "cantaloupe",
+  "raspberries",
+  "watermelon"
 ]
 
-for (let i = 0; i < veg.length; i++) {
-  request(`http://www.growinganything.com/growing-${veg[i]}.html`,(error, response, html) => {
+for (let x = 0; x < veg.length; x++) {
+  request(`http://www.growinganything.com/growing-${veg[x]}.html`,(error, response, html) => {
     if (!error && response.statusCode == 200) {
       let $ = cheerio.load(html);
       $('#ContentColumn .Liner').each(function(){
         let  a = $(this);
+        let description = `${a.children("p").first().text()} `;
 
-        let name = a.children('h1')
+        for (var i = 0; i < a.children('p').length-8; i++) {
+          description += $(`#ContentColumn .Liner p:nth-of-type(${i})`).text();
+        }
+        let name = veg[x]
         // let img = a.attr('src')
-        let description = a.children('p')
-        let sun_amount = a.hasClass('snapshot').children('ul li:nth-child(5)')
+        // let sun_amount = a.hasClass('snapshot').children('ul li:nth-child(5)')
         // let weather_tolerance =
         // let soil_germ_temp =
         // let life_cycle =
@@ -94,9 +101,11 @@ for (let i = 0; i < veg.length; i++) {
         //   diseases: diseases
         // };
         // console.log(a.text());
-        // console.log(name.text());
+        console.log();
+        console.log(name);
+        console.log(description);
         // console.log(description.text());
-        console.log(sun_amount.text());
+        // console.log(sun_amount.text());
 
       });
     }
