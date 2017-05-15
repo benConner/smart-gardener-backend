@@ -3,8 +3,8 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('plants', function(table) {
     table.increments()
     table.string('name').notNullable().unique()
-    table.string('img').notNullable()
-    table.string('description').notNullable()
+    table.text('img').notNullable()
+    table.text('description').notNullable()
     table.string('sun_amount').notNullable()
     table.string('weather_tolerance').notNullable()
     table.string('soil_germ_temp').notNullable()
