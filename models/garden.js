@@ -7,7 +7,7 @@ require('./planted_garden')
 
 const Garden = bookshelf.Model.extend({
   tableName: 'gardens',
-  plants: function() {return this.belongsToMany('Plant').through('Planted_Garden')}
+  plant: function() {return this.belongsToMany('Plant').through('Planted_Garden')}
 
 },{
   getAll: function() {

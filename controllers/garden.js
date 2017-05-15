@@ -2,7 +2,6 @@
 
 const { bookshelf } = require('../db/database');
 const Garden = require('../models/garden')
-const Plant = require('../models/plant')
 
 module.exports.getGardens = (req, res, next) => {
   Garden.getAll()
@@ -11,6 +10,13 @@ module.exports.getGardens = (req, res, next) => {
   })
   .catch( (error) => {
     next(error)
+  })
+}
+module.exports.getGardenById = ({query: {plantId}}, res, next) => {
+  Garden.forge({id: plantId})
+  .fetch({withRelated: ['plant'], require: true})
+  .then((garden)=>{
+    res.status(200).json(garden)
   })
 }
 
@@ -32,27 +38,12 @@ module.exports.editGarden = ({body, params: {id}}, res, next) => {
     next(error);
   })
 }
-module.exports.deleteGarden = ({params:{id}}, res, next) =>{
-  Garden.forge()
-  .where({id: id})
-  .destroy()
-  .then(()=> res.status(201).json({"msg": `deleted garden`}))
-  .catch( (error) => {
-    next(error);
-  })
-}
-
-module.exports.deleteGardenPlants = ({query: {id}}, res, next) => {
-  console.log(id);
-  Garden.forge().where({garden_id: id})
-  .destroy()
-  .then( () => {
-    return Plants.forge({id: id}).destroy()
-  })
-  .then(()=> {
-    return res.status(201).json({"msg": `deleted garden`})
-  })
-  .catch( (error) => {
-    next(error);
-  })
-}
+// module.exports.deleteGarden = ({params:{id}}, res, next) =>{
+//   Garden.forge()
+//   .where({id: id})
+//   .destroy()
+//   .then(()=> res.status(201).json({"msg": `deleted garden`}))
+//   .catch( (error) => {
+//     next(error);
+//   })
+// }
