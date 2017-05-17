@@ -41,12 +41,12 @@ module.exports.editPlant = ({body, params: {id}}, res, next) => {
     next(error);
   })
 }
-// module.exports.deletePlant = ({params:{id}}, res, next) =>{
-//   Plant.forge()
-//   .where({id: id})
-//   .destroy()
-//   .then(()=> res.status(201).json({"msg": `deleted Plant`}))
-//   .catch( (error) => {
-//     next(error);
-//   })
-// }
+module.exports.deletePlant = ({params:{id}}, res, next) =>{
+  Plant.forge()
+  .where({id: id})
+  .destroy()
+  .then(()=> res.status(201).json({"msg": `deleted Plant`}))
+  .catch( (error) => {
+    next(error);
+  })
+}
