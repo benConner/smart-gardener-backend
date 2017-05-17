@@ -12,13 +12,21 @@ module.exports.getGardens = (req, res, next) => {
     next(error)
   })
 }
-module.exports.getGardenById = ({query: {plantId}}, res, next) => {
-  Garden.forge({id: plantId})
+module.exports.getGardenById = ({query: {gardenId}}, res, next) => {
+  Garden.forge({id: gardenId})
   .fetch({withRelated: ['plant'], require: true})
   .then((garden)=>{
     res.status(200).json(garden)
   })
 }
+
+// module.exports.getGardenAndPlants = (req, res, next) => {
+//   Garden.getAll()
+//   .fetch({withRelated: ['plant'], require: true})
+//   .then((garden)=>{
+//     res.status(200).json(garden)
+//   })
+// }
 
 module.exports.addGarden = ({body}, res, next) => {
   Garden.forge(body)
