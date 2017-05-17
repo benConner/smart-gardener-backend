@@ -19,18 +19,6 @@ const Garden = bookshelf.Model.extend({
     .catch( (error) => {
       return error
     });
-  },
-  getSingleGarden: function(id) {
-    // console.log("show id", id);
-    return this.forge({id})
-    .fetch()
-    .then( (garden) => {
-      return garden;
-    })
-    .catch( (error) => {
-      // console.log("error??", error);
-      return error;
-    });
   }
 })
 
