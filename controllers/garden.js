@@ -46,12 +46,3 @@ module.exports.editGarden = ({body, params: {id}}, res, next) => {
     next(error);
   })
 }
-// module.exports.deleteGarden = ({params:{id}}, res, next) =>{
-//   Garden.forge()
-//   .where({id: id})
-//   .destroy()
-//   .then(()=> res.status(201).json({"msg": `deleted garden`}))
-//   .catch( (error) => {
-//     next(error);
-//   })
-// }
