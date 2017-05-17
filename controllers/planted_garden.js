@@ -24,10 +24,10 @@ module.exports.addGardenPlants = ({body: {name, height, length, plantsId}}, res,
 };
 module.exports.deleteGarden = ({query: {id}}, res, next) => {
   console.log(id);
-  Garden.forge().where({garden_id: id})
+  Planted_Garden.forge().where({garden_id: id})
   .destroy()
   .then( () => {
-    return Plants.forge({id: id}).destroy()
+    return Garden.forge({id: id}).destroy()
   })
   .then(()=> {
     return res.status(201).json({"msg": `deleted garden`})
@@ -36,9 +36,18 @@ module.exports.deleteGarden = ({query: {id}}, res, next) => {
     next(error);
   })
 }
-module.exports.deleteGardenPlants = ({body}, res, next)=>{
+module.exports.addPlantsToGarden = ({body}, res, next)=>{
+  Planted_Garden.forge(body)
+  .save()
+  .then(()=> res.status(201).json('realation made'))
+  .catch( (error) => {
+    next(error);
+  })
+}
+module.exports.deleteGardenPlants = ({params: {gardenId, plantId} }, res, next)=>{
   Planted_Garden.forge()
-  .where({plant_id: id})
+  .where({plant_id: plantId})
+  .where({garden_id: gardenId})
   .destroy()
   .then(()=> res.status(201).json({"msg": `deleted Plant`}))
   .catch( (error) => {
