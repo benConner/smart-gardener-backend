@@ -6,17 +6,17 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('gardens').insert([
         {
-          name:"the best garden",
+          name:"The Best Garden",
           height: 3,
           length: 4
         },
         {
-          name:"bill",
+          name:"My garden17",
           height: 7,
           length: 4
         },
         {
-          name: "spring17",
+          name: "Spring17",
           height: 3,
           length: 8
         }
